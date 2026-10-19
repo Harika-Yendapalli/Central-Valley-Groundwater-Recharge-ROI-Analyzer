@@ -1,0 +1,641 @@
+/* =========================================
+   1. Reset & Base Styles
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base font size */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links/buttons */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* System fonts */
+  line-height: 1.6;
+  color: #333; /* Primary text color */
+  background-color: #f8f9fa; /* Very light gray background */
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1000px; /* Max width for content */
+  margin: 0 auto;
+  padding: 1.5rem 1rem; /* Padding for mobile */
+}
+
+@media (min-width: 992px) {
+  .main-content {
+    padding: 2.5rem 1rem; /* More vertical padding on desktop */
+  }
+}
+
+/* Consistent spacing between sections */
+.main-content > section,
+.main-content > main.calculator, /* Target main calculator element */
+.main-content > div.results {   /* Target results div */
+  margin-bottom: 3rem; /* Increase space between sections */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50; /* Dark blue-gray for headings */
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+h1 { font-size: clamp(2rem, 6vw, 2.5rem); font-weight: 700;}
+h2 { font-size: clamp(1.6rem, 5vw, 2rem); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e0e0e0; }
+h3 { font-size: clamp(1.3rem, 4vw, 1.5rem); font-weight: 600; }
+h4 { font-size: clamp(1.1rem, 3.5vw, 1.2rem); font-weight: 600; }
+h5 { font-size: clamp(1rem, 3vw, 1.1rem); font-weight: 600; }
+
+p {
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+  color: #555; /* Slightly lighter text for paragraphs */
+  margin-bottom: 1rem;
+}
+
+/* =========================================
+   2. Header
+   ========================================= */
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 0; /* Reduced padding */
+  text-align: center;
+  margin-bottom: 2.5rem; /* Space below header */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.header h1 {
+  color: #2c3e50;
+  margin-bottom: 0.1rem; /* Less space */
+}
+
+.subtitle {
+  color: #6c757d; /* Gray for subtitle */
+  font-weight: 400;
+}
+
+/* =========================================
+   3. General Section Styling (About, CWI, etc.)
+   ========================================= */
+section.about-problem,
+section.about-solution,
+section.find-roi,
+section.about-cwi {
+  padding: 0; /* Remove padding from section element */
+  background: none; /* No background box */
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #e0e0e0; /* Separator line */
+  padding-bottom: 2.5rem;
+}
+section.find-roi, /* No bottom border for FindROI as calculator follows */
+section.about-cwi { /* No bottom border for CWI as it's near the footer */
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+section h2 {
+  text-align: left; /* Align section titles left */
+  border-bottom: none; /* Remove border from H2 */
+  margin-bottom: 1rem;
+}
+
+/* =========================================
+   4. Specific Section Content
+   ========================================= */
+
+/* Grid utility for responsive columns */
+.grid-container {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .grid-container-2col { grid-template-columns: repeat(2, 1fr); }
+  .grid-container-3col { grid-template-columns: repeat(3, 1fr); }
+  .grid-container-4col { grid-template-columns: repeat(4, 1fr); }
+  .grid-cols-2fr-1fr { grid-template-columns: 2fr 1fr; } /* Specific for problem section */
+}
+
+/* Card styles for stats, benefits etc. */
+.info-card {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+.info-card h4 { font-size: 1rem; color: #2c3e50; margin-bottom: 0.5rem; }
+.info-card p { font-size: 0.9rem; color: #666; margin-bottom: 0; }
+.info-card .icon { font-size: 1.8rem; margin-bottom: 0.75rem; color: #00796b; /* Teal accent */ }
+.stat-number { font-size: 1.6rem; font-weight: 600; color: #c0392b; margin-bottom: 0.1rem; }
+.stat-desc { font-size: 0.8rem; color: #666; }
+
+/* Diagram Steps */
+.step {
+  display: flex;
+  align-items: flex-start; /* Align top */
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+.step-number { background: #00796b; color: white; width: 28px; height: 28px; border-radius: 50%; font-size: 0.9rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 600;}
+.step-content h5 { font-size: 1rem; color: #2c3e50; margin-bottom: 0.25rem; }
+.step-content p { font-size: 0.9rem; color: #666; margin: 0; }
+
+/* Desktop Grid Layouts for Info Sections */
+@media (min-width: 768px) {
+  .problem-content {
+    display: grid; /* Use grid on desktop */
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+  .solution-content {
+    display: grid; /* Use grid on desktop */
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .problem-stats {
+    flex-direction: column; /* Keep stats stacked */
+  }
+  .solution-benefits, .diagram-steps {
+    /* Uses grid-container utility classes now */
+  }
+}
+
+/* --- Find ROI --- */
+.roi-intro p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; /* Center intro text */
+    margin-bottom: 2rem;
+}
+
+/* Feature List Styling */
+.feature-list { /* Container for the list items */
+  display: block;
+  max-width: 650px;
+  margin: 0 auto 2.5rem auto; /* Center list */
+}
+
+/* Style each feature item */
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  color: #00796b; /* Teal accent */
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.feature-text { /* Wrapper for h4 and p */
+  flex-grow: 1;
+}
+
+.feature-item h4 {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.feature-item p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Remove old/conflicting card styles */
+.feature-grid, .feature-card, .feature-card:hover {
+  display: block; background: none; padding: 0; border: none;
+  box-shadow: none; text-align: left; transform: none;
+}
+.feature-card .feature-icon, .feature-card h4, .feature-card p {
+   /* Reset specific inner styles if needed, already covered by feature-item */
+   margin-bottom: 0.25rem; /* Example reset */
+}
+
+
+/* Adjustments for the ROI CTA section */
+.roi-cta {
+  background-color: #eafaf1; /* Lighter teal background */
+  color: #004d40; /* Darker teal text */
+  padding: 2rem 1.5rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 2rem;
+  border: 1px solid #b2dfdb; /* Subtle border */
+}
+.roi-cta h4 { color: #004d40; font-size: 1.4rem; margin-bottom: 0.5rem; }
+.roi-cta p { color: #00695c; font-size: 1rem; margin-bottom: 1.5rem; }
+.cta-button { /* Start Calculator Button */
+  background: #00796b; /* Teal background */
+  color: white;
+  border: 1px solid #00665a;
+  padding: 0.7rem 1.6rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.cta-button:hover { background-color: #00665a; border-color: #00564d; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transform: translateY(-1px);}
+.cta-button:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+
+
+/* --- About CWI --- */
+.cwi-content { max-width: 800px; margin: 0 auto; } /* Keep max-width if desired */
+
+/* Style each service item */
+.service-item {
+  background: none; /* Remove background */
+  padding: 0.75rem 0; /* Vertical padding, no horizontal */
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove shadow */
+  text-align: left; /* Ensure text is left-aligned */
+  border-bottom: 1px solid #e0e0e0; /* Separator line */
+}
+
+.service-item:last-child {
+  border-bottom: none; /* No border on the last service */
+}
+
+.service-item h5 { /* Service Title */
+  font-size: 1.05rem; /* Slightly larger title */
+  color: #2c3e50; /* Dark blue-gray */
+  font-weight: 600; /* Bolder */
+  margin-bottom: 0.15rem; /* Tighter space below title */
+}
+
+.service-item p { /* Service Description */
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 0; /* Remove default paragraph margin */
+}
+
+/* Contact Information Block */
+.cwi-contact {
+    margin-top: 2rem; /* Add space above contact info */
+}
+
+.contact-info {
+  background-color: #e9ecef; /* Light gray background */
+  padding: 1.25rem 1.5rem; /* Padding */
+  border-radius: 6px; /* Rounded corners */
+  border: 1px solid #d1d5d9; /* Subtle border */
+  box-shadow: none; /* No shadow */
+}
+
+.contact-info h4 { /* Contact Info Title */
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ced4da;
+}
+
+.contact-info p { /* Address lines, phone */
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.25rem; /* Tighter line spacing */
+  line-height: 1.5;
+}
+
+.contact-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* Remove old styles that might conflict with CWI section */
+.services-grid { display: block; margin-bottom: 2rem; }
+.cwi-intro h3 { /* Style as needed */ }
+.cwi-intro p { /* Style as needed */ }
+.cwi-mission { /* Style as needed */ }
+.cwi-mission h4, .cwi-services h4 { /* Reset potential conflicts */
+    font-size: 1.2rem; margin-bottom: 1rem; padding-bottom: 0; border-bottom: none;
+}
+.cwi-mission p { /* Style as needed */ }
+
+
+/* =========================================
+   5. Calculator Form
+   ========================================= */
+main.calculator { /* Target main calculator element */
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #d1d5db; /* Slightly darker border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.form-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  background: none;
+  border-radius: 0;
+  border-top: none; /* Use bottom border only */
+  border-left: none;
+  border-right: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.form-section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+
+.form-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00796b; /* Teal headers */
+  margin-bottom: 1.25rem;
+  border-bottom: none; /* Remove border from H2 */
+  padding-bottom: 0;
+  text-align: left;
+}
+.form-section h2::before { content: none; }
+
+/* Grid layout for form fields */
+.form-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust min size */
+    gap: 1.25rem 1.5rem; /* Row gap, Column gap */
+}
+
+.form-group {
+  margin-bottom: 0; /* Remove margin as gap handles spacing in grid */
+}
+/* Add margin back if not using grid */
+main.calculator > .form-section > .form-group {
+    margin-bottom: 1.25rem;
+}
+
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #495057; /* Darker gray label */
+  margin-bottom: 0.3rem;
+  font-size: 0.85rem; /* Smaller labels */
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ced4da; /* Gray border */
+  border-radius: 4px;
+  font-size: 0.95rem; /* Slightly smaller input text */
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1.5; /* Ensure consistent height */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #00796b; /* Teal focus border */
+  box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.15);
+  transform: none;
+}
+
+/* Use class from JS */
+.form-group input.input-error,
+.form-group select.input-error {
+  border-color: #dc3545; /* Error red */
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1);
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.75rem; /* Smaller error message */
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 0.3rem;
+  color: #6c757d; /* Gray hint text */
+  font-size: 0.75rem; /* Smaller hint text */
+}
+
+/* Calculate Button */
+.calculate-btn {
+  background-color: #00796b; /* Teal */
+  color: white;
+  border: 1px solid #00665a;
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 2rem auto 0 auto; /* Center it, more top margin */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600; /* Added font weight */
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.calculate-btn:hover {
+  background-color: #00665a;
+  border-color: #00564d;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.calculate-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.calculate-btn.disabled,
+.calculate-btn:disabled {
+  background-color: #adb5bd; /* Gray disabled */
+  border-color: #adb5bd;
+  cursor: not-allowed;
+  opacity: 0.65;
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================
+   6. Results Display
+   ========================================= */
+div.results { /* Target results div */
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.results h2 {
+  font-size: clamp(1.6rem, 4.5vw, 1.8rem); /* Slightly smaller */
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+/* Grouping Results (Optional HTML Change as before) */
+.results-group {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed #e0e0e0; /* Dashed separator */
+}
+.results-group:last-of-type { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.results-group h3 {
+  font-size: 1rem; /* Smaller group title */
+  font-weight: 600;
+  color: #00796b; /* Teal group title */
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust min card width */
+  gap: 1rem;
+}
+
+.result-card {
+  background-color: #f8f9fa; /* Light background */
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.result-card h4 { /* Label */
+  font-size: 0.75rem; /* Smaller label */
+  font-weight: 500;
+  margin-bottom: 0.2rem; /* Tighter spacing */
+  color: #6c757d; /* Gray label */
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.result-value { /* Value */
+  font-size: 1.3rem; /* Adjusted value size */
+  font-weight: 600;
+  color: #2c3e50; /* Dark blue/gray value */
+  line-height: 1.3;
+}
+
+/* Optional emphasis for key results */
+.result-card.roi .result-value,
+.result-card.npv .result-value {
+   font-weight: 700;
+   color: #00796b; /* Teal emphasis */
+}
+
+/* =========================================
+   7. Disclaimer & Footer
+   ========================================= */
+.disclaimer {
+  background-color: #fff3cd; /* Lighter warning yellow */
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  margin: 0 1rem 2rem 1rem; /* Consistent with main padding */
+  border: 1px solid #ffeeba;
+  border-left: 3px solid #ffc107; /* Thinner accent */
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.disclaimer h3 { color: #856404; margin-bottom: 0.25rem; font-size: 0.9rem; font-weight: 600; }
+.disclaimer p { color: #555; font-size: 0.85rem; line-height: 1.5; margin-bottom: 0; }
+
+.footer {
+  background-color: #e9ecef;
+  border-radius: 0;
+  padding: 1rem;
+  text-align: center;
+  color: #6c757d; /* Gray footer text */
+  margin-top: auto;
+  font-size: 0.8rem; /* Smaller footer text */
+  box-shadow: none;
+  border-top: 1px solid #d1d5db;
+  backdrop-filter: none;
+}
+.footer p { margin-bottom: 0.25rem; line-height: 1.4; }
+.footer p:last-child { margin-bottom: 0; }
+
+/* =========================================
+   8. Responsive Adjustments (Simplified)
+   ========================================= */
+@media (max-width: 576px) {
+  .main-content {
+    padding: 1rem 0.75rem; /* Slightly reduce padding on very small screens */
+  }
+  .header { padding: 0.75rem 0; }
+  .form-fields-grid {
+    grid-template-columns: 1fr; /* Force single column */
+    gap: 1rem 0; /* Only row gap */
+  }
+  .results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Allow smaller cards */
+    gap: 0.75rem;
+  }
+   .calculate-btn { max-width: 100%; font-size: 1rem; padding: 0.7rem 1.2rem;}
+   .cta-button { font-size: 0.9rem; padding: 0.6rem 1.4rem;}
+}
+
+/* =========================================
+   9. Print Styles (Keep simple)
+   ========================================= */
+@media print {
+  body { background-color: white; font-size: 10pt; }
+  .header, .footer, .roi-cta, .disclaimer { display: none; } /* Hide non-essentials */
+  .main-content { max-width: 100%; padding: 0; }
+  section, main.calculator, div.results {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    background: white;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc !important; /* Ensure borders print */
+  }
+  h1, h2, h3, h4, h5, h6 { color: black; }
+  .form-fields-grid { grid-template-columns: 1fr 1fr; gap: 1rem;} /* Maybe 2 columns for print */
+  .results-grid { grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; } /* Try 3 columns for print */
+  .result-card { padding: 0.5rem; border: 1px solid #eee; background: white; }
+  .result-value { font-size: 1.2rem; }
+  .form-group small { display: none; } /* Hide hints */
+}
