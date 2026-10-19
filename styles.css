@@ -1,0 +1,367 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333; /* Dark grey text for readability */
+    background-color: #f4f7f6; /* Very light grey background */
+    /* Optional subtle texture: */
+    /* background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dce3e1' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E"); */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px; /* Slightly narrower for better focus */
+    margin: 20px auto; /* Add margin top/bottom */
+    padding: 20px;
+    background-color: #ffffff; /* White container background */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 30px 20px; /* Adjusted padding */
+    border-bottom: 1px solid #e9ecef; /* Separator line */
+    background: none; /* Removed white background from header itself */
+    box-shadow: none; /* Removed shadow */
+    border-radius: 0; /* Removed border-radius */
+}
+
+.header h1 {
+    font-size: 2.2rem; /* Slightly smaller */
+    font-weight: 700;
+    color: #2c5f2d; /* Dark green */
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem; /* Slightly smaller */
+    color: #555; /* Darker grey */
+    font-weight: 400;
+}
+
+/* Disclaimer */
+.disclaimer {
+    background: #fff8e1; /* Lighter yellow */
+    border: 1px solid #ffecb3;
+    border-left: 5px solid #ffc107; /* Accent border */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 10px 30px 10px; /* Add horizontal margin */
+}
+
+.disclaimer h3 {
+    color: #8d6e63; /* Brownish text */
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    display: flex; /* Align icon and text */
+    align-items: center;
+}
+
+.disclaimer h3::before { /* Add warning icon */
+    content: '⚠️';
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+
+.disclaimer p {
+    color: #5f4339; /* Darker brownish text */
+    margin: 0;
+}
+
+/* Calculator Form */
+.calculator {
+    background: none; /* Removed white background */
+    border-radius: 0;
+    padding: 10px; /* Adjusted padding */
+    box-shadow: none; /* Removed shadow */
+    margin-bottom: 30px;
+}
+
+/* Use grid for form sections for better responsiveness */
+.form-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 30px; /* Gap between columns */
+}
+
+.form-section {
+    margin-bottom: 20px; /* Reduced margin */
+    padding-bottom: 0;
+    border-bottom: none; /* Removed bottom border */
+}
+
+.form-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.form-section h2 {
+    color: #2c5f2d; /* Dark green */
+    font-size: 1.3rem; /* Slightly smaller */
+    margin-bottom: 20px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #a5d6a7; /* Light green underline */
+    display: inline-block; /* Make underline fit content */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333; /* Dark grey */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ced4da; /* Slightly darker border */
+    border-radius: 6px; /* Slightly less rounded */
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: #ffffff; /* White background */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4caf50; /* Green focus border */
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2); /* Subtle focus glow */
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+/* Buttons (General Style) */
+button {
+    display: inline-block; /* Allow multiple buttons side-by-side if needed */
+    border: none;
+    padding: 12px 24px; /* Adjusted padding */
+    font-size: 1rem; /* Standardized font size */
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+button:hover {
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(0px); /* Press down effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific Button Styles */
+.calculate-btn {
+    width: auto; /* Allow natural width or set % */
+    min-width: 200px;
+    background: linear-gradient(135deg, #4caf50, #388e3c); /* Green gradient */
+    color: white;
+    margin-top: 20px;
+    margin-right: 10px; /* Add margin if placing next to another button */
+}
+
+.calculate-btn:hover {
+    background: linear-gradient(135deg, #388e3c, #2e7d32);
+}
+
+.sample-btn {
+    width: auto; /* Allow natural width */
+    min-width: 150px;
+    background: #78909c; /* Blue-grey */
+    color: white;
+    margin-top: 20px;
+}
+
+.sample-btn:hover {
+    background: #546e7a;
+}
+
+.button-container { /* Optional: Wrap buttons for better layout */
+    text-align: center; /* Center buttons */
+    margin-top: 20px;
+}
+
+
+/* Results */
+.results {
+    background: #e8f5e9; /* Very light green background */
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 30px 10px; /* Add horizontal margin */
+    border: 1px solid #c8e6c9; /* Light green border */
+}
+
+.results h2 {
+    color: #2c5f2d; /* Dark green */
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust minmax for smaller cards */
+    gap: 20px;
+}
+
+.result-card {
+    background: #ffffff; /* White card background */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-card h3 {
+    color: #555; /* Darker grey */
+    font-size: 0.9rem; /* Smaller heading */
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase; /* Uppercase heading */
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.7rem; /* Larger value */
+    font-weight: 700;
+    color: #388e3c; /* Darker green */
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+    background: none; /* Removed background */
+    border-radius: 0;
+    padding: 20px 10px; /* Adjusted padding */
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #e9ecef; /* Separator line */
+    box-shadow: none; /* Removed shadow */
+}
+
+.footer p {
+    color: #6c757d;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.footer p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px; /* Reduce margin */
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem; /* Further reduce */
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .calculator,
+    .results {
+        padding: 15px; /* Reduce padding */
+    }
+
+    /* Stack buttons vertically on smaller screens */
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Space between stacked buttons */
+        align-items: center; /* Center buttons */
+    }
+
+    .calculate-btn,
+    .sample-btn {
+        width: 100%; /* Make buttons full width */
+        max-width: 300px; /* Optional: limit max width */
+        margin-right: 0; /* Remove right margin */
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .result-value {
+        font-size: 1.5rem; /* Slightly smaller value text */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Slightly smaller base font */
+    }
+
+    .header {
+        padding: 20px 15px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .form-layout {
+        grid-template-columns: 1fr; /* Force single column earlier */
+        gap: 20px;
+    }
+
+    .form-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px 12px; /* Smaller padding for inputs */
+    }
+
+     button {
+        padding: 10px 20px; /* Smaller padding for buttons */
+        font-size: 0.95rem;
+    }
+
+    .results h2 {
+        font-size: 1.5rem;
+    }
+}
