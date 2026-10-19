@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Recharge Basin Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Water Recharge Basin Calculator</h1>
+            <p class="subtitle">Helping farmers determine if a recharge basin is worthwhile</p>
+        </header>
+
+        <div class="disclaimer">
+            <h3>⚠️ Important Disclaimer</h3>
+            <p>This calculator provides only a preliminary cost estimate. Recharge basins should be professionally designed to reduce the risk of basin failure. Farmers should consult with your water district manager regarding the frequency of availability and cost of recharge water.</p>
+        </div>
+
+        <main class="calculator">
+            <div class="form-section">
+                <h2>Basin Configuration</h2>
+                <div class="form-group">
+                    <label for="basin-length">Basin Length (feet)</label>
+                    <input type="number" id="basin-length" placeholder="Enter basin length">
+                </div>
+                
+                <div class="form-group">
+                    <label for="basin-width">Basin Width (feet)</label>
+                    <input type="number" id="basin-width" placeholder="Enter basin width">
+                </div>
+                
+                <div class="form-group">
+                    <label for="basin-depth">Basin Depth (feet)</label>
+                    <input type="number" id="basin-depth" placeholder="Enter basin depth">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Soil Properties</h2>
+                <div class="form-group">
+                    <label for="soil-type">Soil Type</label>
+                    <select id="soil-type">
+                        <option value="">Select soil type</option>
+                        <option value="sand">Sand (High permeability)</option>
+                        <option value="sandy-loam">Sandy Loam (Medium-high permeability)</option>
+                        <option value="loam">Loam (Medium permeability)</option>
+                        <option value="clay-loam">Clay Loam (Low-medium permeability)</option>
+                        <option value="clay">Clay (Low permeability)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="infiltration-rate">Infiltration Rate (inches/hour)</label>
+                    <input type="number" id="infiltration-rate" step="0.1" placeholder="Enter infiltration rate">
+                    <small>Typical rates: Sand (2-8), Sandy Loam (1-3), Loam (0.5-1.5), Clay Loam (0.1-0.5), Clay (0.01-0.1)</small>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Water Supply</h2>
+                <div class="form-group">
+                    <label for="water-availability">Water Availability (days/year)</label>
+                    <input type="number" id="water-availability" placeholder="Enter days per year">
+                </div>
+                
+                <div class="form-group">
+                    <label for="water-cost">Water Cost ($/acre-foot)</label>
+                    <input type="number" id="water-cost" step="0.01" placeholder="Enter cost per acre-foot">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pumping-rate">Pumping Rate (gallons/minute)</label>
+                    <input type="number" id="pumping-rate" placeholder="Enter pumping rate">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Costs</h2>
+                <div class="form-group">
+                    <label for="excavation-cost">Excavation Cost ($/cubic yard)</label>
+                    <input type="number" id="excavation-cost" step="0.01" placeholder="Enter excavation cost">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pipeline-cost">Pipeline Cost ($/foot)</label>
+                    <input type="number" id="pipeline-cost" step="0.01" placeholder="Enter pipeline cost">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pipeline-length">Pipeline Length (feet)</label>
+                    <input type="number" id="pipeline-length" placeholder="Enter pipeline length">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Financial</h2>
+                <div class="form-group">
+                    <label for="interest-rate">Interest Rate (%)</label>
+                    <input type="number" id="interest-rate" step="0.01" placeholder="Enter interest rate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="loan-term">Loan Term (years)</label>
+                    <input type="number" id="loan-term" placeholder="Enter loan term">
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateROI()">Calculate ROI</button>
+        </main>
+
+        <div class="results" id="results" style="display: none;">
+            <h2>Results</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Basin Volume</h3>
+                    <p class="result-value" id="basin-volume">0 acre-feet</p>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Total Construction Cost</h3>
+                    <p class="result-value" id="construction-cost">$0</p>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Annual Water Savings</h3>
+                    <p class="result-value" id="water-savings">$0</p>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Payback Period</h3>
+                    <p class="result-value" id="payback-period">0 years</p>
+                </div>
+                
+                <div class="result-card">
+                    <h3>ROI (10 years)</h3>
+                    <p class="result-value" id="roi">0%</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>This calculator is a work in progress and has been discussed at one Technical Committee Meeting of the Water Blueprint.</p>
+            <p>For professional design and implementation, consult with experienced engineering firms.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
