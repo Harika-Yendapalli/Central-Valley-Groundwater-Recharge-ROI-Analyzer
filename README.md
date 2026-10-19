@@ -4,7 +4,6 @@ A full-stack web app that helps farmers in California's Central Valley decide wh
 
 Built as a project for **CSCI 130**.
 
----
 
 ## The Problem
 
@@ -26,7 +25,6 @@ Groundwater levels in the Central Valley have been falling for decades due to dr
 - **Form validation** with clear error messages
 - **Responsive design** for desktop and mobile
 
----
 
 ## Tech Stack
 
@@ -37,7 +35,7 @@ Groundwater levels in the Central Valley have been falling for decades due to dr
 | Data | USDA NRCS Soil Data Access API, OpenStreetMap tiles |
 | Database (in progress) | MongoDB / Mongoose schema for saving reports |
 
----
+
 
 ## Project Structure
 
@@ -56,7 +54,7 @@ Groundwater levels in the Central Valley have been falling for decades due to dr
 └── package.json
 ```
 
----
+
 
 ## Getting Started
 
@@ -83,7 +81,7 @@ Groundwater levels in the Central Valley have been falling for decades due to dr
 
 Optional: create `Backend/.env` to set `PORT` or a database connection string. This file is ignored by git.
 
----
+
 
 ## How to Use
 
@@ -92,7 +90,6 @@ Optional: create `Backend/.env` to set `PORT` or a database connection string. T
 3. Open the **Calculator** page and enter basin size, soil, costs and water details.
 4. Click **Calculate ROI** to see total cost, ROI and payback period.
 
----
 
 ## Future Improvements
 
@@ -102,8 +99,4 @@ Optional: create `Backend/.env` to set `PORT` or a database connection string. T
 - Support for sloping land and multiple basins
 - Historical water supply data and water district incentives
 
----
 
-## Disclaimer
-
-This calculator gives **preliminary estimates only**. Recharge basins should be professionally designed to reduce the risk of basin failure, and farmers should check with their water district about recharge water availability and cost.
